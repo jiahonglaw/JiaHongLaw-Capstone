@@ -4,31 +4,30 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Finance</h1>
-      <div className="card">
-        <button>
-          Add Stock
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+
+    
+    <div className="dashboard-container">
+      {/* Finance icon */}
+      <img src="budget-DTOxYgwc.png" alt="Finance Icon" className="finance-icon" />
+    
+      
+      <h1>Finance Dashboard</h1>
+
+        <form className="stock-form">
+        <input type="text" placeholder="Stock Symbol"/><br /><br />
+        <input type="number" placeholder="Quantity" /><br /><br />
+        <input type="number" placeholder="Purchase Price" /><br /><br />
+        <input type="submit" value="Add Stock" />
+        </form>
+        
+        {/* Stock List */}
+        <h2>Stock List</h2>
+        <p>No stocks added yet.</p>
+
+
+        </div>
   )
 }
 
