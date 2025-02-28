@@ -1,0 +1,23 @@
+.counter {
+    color: black;
+    font-weight: bold;
+}
+
+.gains {
+    color: green
+
+}
+
+.losses {
+    color: red
+}
+
+.huat {
+    color: green;
+    font-size: 32px;
+}
+
+.hodl {
+    color: red;
+    font-size: 32px;
+}

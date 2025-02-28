@@ -61,3 +61,13 @@ p {
   color: black;
   font-weight: bold;
 }
+
+.gains {
+  color: green;
+  font-weight: bold;
+}
+
+.losses {
+  color: red;
+  font-weight: bold;
+}

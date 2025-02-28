@@ -25,7 +25,7 @@ function App() {
         <p>Quantity: 2</p>
         <p>Purchase Price: 500</p>
         <p>Current Price: 100</p>
-        <p> Profit/Loss: +/- xxx.xx</p>
+        <p className="gains"> Profit/Loss: +/- xxx.xx</p>
 
 
         </div>
