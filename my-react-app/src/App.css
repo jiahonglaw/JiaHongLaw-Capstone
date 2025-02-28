@@ -57,3 +57,7 @@ p {
   color: #666;
 }
 
+.symbol {
+  color: black;
+  font-weight: bold;
+}

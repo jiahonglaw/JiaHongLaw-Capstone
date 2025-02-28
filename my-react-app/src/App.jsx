@@ -20,7 +20,12 @@ function App() {
         
         {/* Stock List */}
         <h2>Stock List</h2>
-        <p>No stocks added yet.</p>
+        <p>No stocks added yet</p>
+        <p className="symbol">Symbol: AAPL</p>
+        <p>Quantity: 2</p>
+        <p>Purchase Price: 500</p>
+        <p>Current Price: 100</p>
+        <p> Profit/Loss: +/- xxx.xx</p>
 
 
         </div>
