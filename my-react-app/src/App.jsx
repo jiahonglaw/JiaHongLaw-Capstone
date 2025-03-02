@@ -1,10 +1,38 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
-  const [stockSymbol, setStockSymbol] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [purchasePrice, setPurchasePrice] = useState("");
+  const [tempStockSymbol, setStockSymbol] = useState("");
+  const [tempQuantity, setQuantity] = useState("");
+  const [tempPurchasePrice, setPurchasePrice] = useState("");
+  
+  
+  const [stocks, setStocks] = useState([]);
+  const [stocklist, setStockList] = useState([]);
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    
+    if (!tempStockSymbol || !tempQuantity || !tempPurchasePrice) return;
+
+    const newStock = {
+      stockSymbol: tempStockSymbol,
+      quantity: tempQuantity,
+      purchasePrice: tempPurchasePrice,
+    };
+
+    setStocks([...stocks, newStock]);
+    setTempStockSymbol('');
+    setTempQuantity('');
+    setTempPurchasePrice('');
+  };
+
+  useEffect(() => {
+    fetch('https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=IBM&apikey=demo')
+      .then(res => res.json())
+      .then(data =>setStockList(data));
+  }, []);
  
   return (
 
@@ -12,45 +40,40 @@ function App() {
     <div className="dashboard-container">
       <h1>Finance Dashboard</h1>
 
-        <form className="stock-form">
+        <form className="stock-form" onSubmit={handleSubmit}>
         <input type="text" 
         placeholder="Stock Symbol" 
-        value={stockSymbol} 
-        onClick={(event)=> setStockSymbol(event.target.value)}/>
+        value={tempStockSymbol} 
+        onChange={(event)=> setStockSymbol(event.target.value)}/>
         <br /><br />
         <input type="number" 
         placeholder="Quantity"
-        value={quantity}
-        onClick={(event)=> setQuantity(event.target.value)} />
+        value={tempQuantity}
+        onChange={(event)=> setQuantity(event.target.value)} />
         <br /><br />
         <input type="number" 
         placeholder="Purchase Price" 
-        value={purchasePrice}
-        onClick={(event)=>setPurchasePrice(event.target.value)}
+        value={tempPurchasePrice}
+        onChange={(event)=>setPurchasePrice(event.target.value)}
         /><br /><br />
         <button className="add-stock-btn" type="submit">Add Stock</button>
         </form>        
         
         {/* Stock List */}
         <h2>Stock List</h2>
-        {stockSymbol.length ===0 ?(
+        {stocks.length ===0 ?(
           <p>No stocks added yet</p>
         ): (
-          stockSymbol.localeCompare((stock,index) =>(
+          stocks.map((stock,index) =>(
             <div key={index}>
               <p className="symbol">Symbol:{stock.stockSymbol}</p>
               <p>Quantity: {stock.quantity}</p>
               <p>Purchase Price: {stock.purchasePrice} </p>
               <p>Current Price: 100</p>
-              <p className="gains"> Profit/Loss: +/- xxx.xx</p>
+              <p className="gains"> Profit/Loss: +/- 100 </p>
               </div>
           ))
-
-
         )}
-        
-        
-
         </div>
   )
 }
