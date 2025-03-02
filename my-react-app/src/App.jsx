@@ -2,13 +2,19 @@ import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
-  const [tempStockSymbol, setStockSymbol] = useState("");
-  const [tempQuantity, setQuantity] = useState("");
-  const [tempPurchasePrice, setPurchasePrice] = useState("");
+  const [tempStockSymbol, setTempStockSymbol] = useState("");
+  const [tempQuantity, setTempQuantity] = useState("");
+  const [tempPurchasePrice, setTempPurchasePrice] = useState("");
   
   
   const [stocks, setStocks] = useState([]);
   const [stocklist, setStockList] = useState([]);
+
+  useEffect(() => {
+    fetch('https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=IBM&apikey=demo')
+      .then(res => res.json())
+      .then(data =>setStockList(data["Global Quote"]));
+  }, []);
 
 
   const handleSubmit = (event) => {
@@ -20,6 +26,7 @@ function App() {
       stockSymbol: tempStockSymbol,
       quantity: tempQuantity,
       purchasePrice: tempPurchasePrice,
+      currentPrice: stocklist["05. price"]
     };
 
     setStocks([...stocks, newStock]);
@@ -28,11 +35,9 @@ function App() {
     setTempPurchasePrice('');
   };
 
-  useEffect(() => {
-    fetch('https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=IBM&apikey=demo')
-      .then(res => res.json())
-      .then(data =>setStockList(data));
-  }, []);
+
+
+
  
   return (
 
@@ -44,37 +49,52 @@ function App() {
         <input type="text" 
         placeholder="Stock Symbol" 
         value={tempStockSymbol} 
-        onChange={(event)=> setStockSymbol(event.target.value)}/>
+        onChange={(event)=> setTempStockSymbol(event.target.value)}/>
         <br /><br />
         <input type="number" 
         placeholder="Quantity"
         value={tempQuantity}
-        onChange={(event)=> setQuantity(event.target.value)} />
+        onChange={(event)=> setTempQuantity(event.target.value)} />
         <br /><br />
         <input type="number" 
         placeholder="Purchase Price" 
         value={tempPurchasePrice}
-        onChange={(event)=>setPurchasePrice(event.target.value)}
+        onChange={(event)=>setTempPurchasePrice(event.target.value)}
         /><br /><br />
         <button className="add-stock-btn" type="submit">Add Stock</button>
         </form>        
         
         {/* Stock List */}
         <h2>Stock List</h2>
-        {stocks.length ===0 ?(
-          <p>No stocks added yet</p>
-        ): (
-          stocks.map((stock,index) =>(
+      {stocks.length === 0 ? (
+        <p>No stocks added yet</p>
+      ) : (
+        stocks.map((stock, index) => {
+          const { stockSymbol, quantity, purchasePrice, currentPrice } = stock;
+          let profitLoss = 0;
+
+          if (currentPrice > purchasePrice) {
+            profitLoss = (currentPrice - purchasePrice) * quantity;
+          } else if (currentPrice < purchasePrice) {
+            profitLoss = (currentPrice - purchasePrice) * quantity;
+          }
+
+          return (
             <div key={index}>
-              <p className="symbol">Symbol:{stock.stockSymbol}</p>
-              <p>Quantity: {stock.quantity}</p>
-              <p>Purchase Price: {stock.purchasePrice} </p>
-              <p>Current Price: 100</p>
-              <p className="gains"> Profit/Loss: +/- 100 </p>
-              </div>
-          ))
-        )}
-        </div>
+              <p className="symbol">Symbol: {stockSymbol}</p>
+              <p>Quantity: {quantity}</p>
+              <p>Purchase Price: ${purchasePrice}</p>
+              <p>Current Price: ${currentPrice}</p>
+              <p className="gains">
+                {profitLoss > 0 ? `Profit: +$${profitLoss}` :
+                 profitLoss < 0 ? `Loss: -$${Math.abs(profitLoss)}` :
+                 "No Gain/Loss"}
+              </p>
+            </div>
+          );
+        })
+      )}
+    </div>
   )
 }
 
