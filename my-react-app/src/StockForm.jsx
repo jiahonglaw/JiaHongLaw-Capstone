@@ -46,7 +46,7 @@ function StockForm () {
           tempQuantity,
           tempPurchasePrice,
           stocks,
-          stocklist,
+          stocklist
         }}
         >
         <div className="dashboard-container">

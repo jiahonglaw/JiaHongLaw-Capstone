@@ -4,14 +4,16 @@ import {useContext} from "react";
 
 function StockList () {
     const StockContextValue = useContext(StockContext)
+  
     
     return( <div>
     <h2>Stock List</h2>
-    {stocks.length === 0 ? (
+    {StockContextValue.stocks.length === 0 ? (
       <p>No stocks added yet</p>
     ) : (
-      stocks.map((stock, index) => {
-        const { stockSymbol, quantity, purchasePrice, currentPrice } = stock;
+      StockContextValue.stocks.map((stock, index) => {
+        const { 
+            stockSymbol, quantity, purchasePrice, currentPrice } = stock;
         let profitLoss = 0;
     
         if (currentPrice > purchasePrice) {
