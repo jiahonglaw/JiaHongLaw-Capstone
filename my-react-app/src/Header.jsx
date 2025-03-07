@@ -8,7 +8,7 @@ function Header() {
     
     <div>
       {/* Finance icon */}
-      <img src="budget-DTOxYgwc.png" alt="Finance Icon" className="img-container" />
+      <img src="Screen_Shot_2019-06-05_at_1.26.32_PM.jpg" alt="Stonks" className="img-container2" />
       
         </div>
   )

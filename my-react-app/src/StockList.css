@@ -1,0 +1,85 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  
+  
+  .dashboard-container {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .finance-icon {
+    width: 50px;
+    display: block;
+    margin: 10px auto;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+  }
+  
+  .stock-form {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .input-field {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .add-stock-btn {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  p {
+    color: #666;
+  }
+  
+  .symbol {
+    color: black;
+    font-weight: bold;
+  }
+  
+  .gains {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .losses {
+    color: red;
+    font-weight: bold;
+  }
+
+  .huat {
+    color: green;
+    font-weight: bold;
+    font-size: 40px;
+  }
+
+  .hodl {
+    color: red;
+    font-weight: bold;
+    font-size: 40px;
+  }
