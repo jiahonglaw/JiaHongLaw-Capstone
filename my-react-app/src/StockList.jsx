@@ -11,17 +11,24 @@ function StockList() {
 
     useEffect(() => {
         if (StockSymbol) { 
-            fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=IBM&apikey=demo`)
+            fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${StockSymbol}&apikey=demo`)
                 .then(res => res.json())
                 .then(data => {
-                    setCurrentPrice(parseFloat(data["Global Quote"]["05. price"]));
+                    if (data["Global Quote"] && data["Global Quote"]["05. price"] ){
+                        setCurrentPrice(parseFloat(data["Global Quote"]["05. price"]));
+                    } else {
+                        console.error("Invalid ticker symbol or no data available");
+                        setCurrentPrice(null);
+
+                    }
+                    
                 })
                 .catch(() => setCurrentPrice(null)); 
         }
     }, [StockSymbol]);
 
     if (!StockSymbol) {
-        return <p>Please enter stock details to view the stock list.</p>;
+        return <p>No stocks added yuet</p>;
     }
 
     if (currentPrice === null) {
