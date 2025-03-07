@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './StockForm.css'
 import StockContext from './contexts/StockContext'
 import StockList from './StockList'
@@ -7,9 +7,9 @@ function StockForm () {
 
     const [stockSymbol, setStockSymbol] = useState("");
     const [quantity, setQuantity] = useState("");
-    const [purchasePrice, setPurchasePrice] = useState(""); 
-  
+    const [purchasePrice, setPurchasePrice] = useState("");
 
+  
     return (
 
         <StockContext.Provider 

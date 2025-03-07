@@ -67,8 +67,8 @@ function StockList() {
             <div>
                 <p className="symbol">Symbol: {StockSymbol}</p>
                 <p>Quantity: {quantity}</p>
-                <p>Purchase Price: ${purchasePrice.toFixed(2)}</p>
-                <p>Current Price: ${currentPrice.toFixed(2)}</p>
+                <p>Purchase Price: ${purchasePrice}</p>
+                <p>Current Price: ${currentPrice}</p>
                 <p className="gains">No Gain/Loss</p>
             </div>
         </div>
