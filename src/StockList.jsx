@@ -28,7 +28,7 @@ function StockList() {
     }, [StockSymbol]);
 
     if (!StockSymbol) {
-        return <p>No stocks added yuet</p>;
+        return <p>No stocks added yet</p>;
     }
 
     if (currentPrice === null) {
