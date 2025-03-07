@@ -71,3 +71,15 @@
     color: red;
     font-weight: bold;
   }
+
+  .huat {
+    color: green;
+    font-weight: bold;
+    font-size: 40px;
+  }
+
+  .hodl {
+    color: red;
+    font-weight: bold;
+    font-size: 40px;
+  }

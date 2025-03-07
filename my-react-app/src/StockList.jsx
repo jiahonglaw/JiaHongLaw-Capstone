@@ -40,7 +40,7 @@ function StockList() {
                     <p>Purchase Price: ${purchasePrice}</p>
                     <p>Current Price: ${currentPrice}</p>
                     <p className="gains">Profit: +${profitLoss}</p>
-                    <p className="gains">HUAT ARH!</p>
+                    <p className="huat">HUAT ARH!</p>
                 </div>
             </div>
         );
@@ -54,7 +54,7 @@ function StockList() {
                     <p>Purchase Price: ${purchasePrice}</p>
                     <p>Current Price: ${currentPrice}</p>
                     <p className="losses">Loss: -${Math.abs(profitLoss)}</p>
-                    <p className="losses">HODL</p>
+                    <p className="hodl">HODL!</p>
                 </div>
             </div>
         );
@@ -69,7 +69,7 @@ function StockList() {
                 <p>Quantity: {quantity}</p>
                 <p>Purchase Price: ${purchasePrice}</p>
                 <p>Current Price: ${currentPrice}</p>
-                <p className="gains">No Gain/Loss</p>
+                <p>No Gain/Loss</p>
             </div>
         </div>
     );
