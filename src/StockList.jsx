@@ -11,7 +11,7 @@ function StockList() {
 
     useEffect(() => {
         if (StockSymbol) { 
-            fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${StockSymbol}&apikey=demo`)
+            fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${StockSymbol}&apikey=LP5G4ZY3QIUH8CZ5`)
                 .then(res => res.json())
                 .then(data => {
                     if (data["Global Quote"] && data["Global Quote"]["05. price"] ){
