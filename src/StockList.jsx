@@ -5,13 +5,14 @@ import { useContext, useEffect, useState } from "react";
 function StockList() {
     const StockContextValue = useContext(StockContext);
     const [currentPrice, setCurrentPrice] = useState(null);
+    const API_KEY = import.meta.env.ALPHAVANTAGE_API_KEY
     let StockSymbol = StockContextValue.stockSymbol;
     let quantity = StockContextValue.quantity;
     let purchasePrice = StockContextValue.purchasePrice
 
     useEffect(() => {
         if (StockSymbol) { 
-            fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${StockSymbol}&apikey=LP5G4ZY3QIUH8CZ5`)
+            fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${StockSymbol}&apikey={${API_KEY}}`)
                 .then(res => res.json())
                 .then(data => {
                     if (data["Global Quote"] && data["Global Quote"]["05. price"] ){
